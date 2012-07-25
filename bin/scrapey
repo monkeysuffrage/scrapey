@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require 'scrapey/template'
+
+Scrapey::Template::generate *ARGV
