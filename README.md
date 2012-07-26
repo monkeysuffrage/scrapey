@@ -20,17 +20,18 @@ Or install it yourself as:
 
 ### Concurrent downloads
 
-  require 'scrapey'
-  require 'scrapey/multi'
+```ruby
+require 'scrapey'
+require 'scrapey/multi'
 
-  fields 'url', 'title'
+fields 'url', 'title'
 
-  def scrape url, response
-    doc = Nokogiri::HTML response
-    @items << {'url' => url, 'title' => doc.at('title').text}
-  end
+def scrape url, response
+  doc = Nokogiri::HTML response
+  @items << {'url' => url, 'title' => doc.at('title').text}
+end
 
-  @items = []
-  multi_get ['http://www.yahoo.com/', 'http://www.google.com.', 'http://www.bing.com/'], 3, :scrape
-  @items.each{|item| save item}
-
+@items = []
+multi_get ['http://www.yahoo.com/', 'http://www.google.com.', 'http://www.bing.com/'], 3, :scrape
+@items.each{|item| save item}
+```
