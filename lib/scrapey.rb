@@ -3,8 +3,9 @@ require 'csv'
 require 'json'
 require 'yaml'
 
-require "scrapey/version"
 require "scrapey/scrapey"
+require "scrapey/version"
+require "scrapey/constants"
 require "scrapey/cache"
 require "scrapey/database"
 
@@ -15,7 +16,7 @@ include Scrapey
 @agent.user_agent = 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.56 Safari/536.5'
 
 # default output file
-@output = Time.now.strftime("#{BASEDIR}/Output/output_%Y_%m_%d_%H_%M_%S.csv")
+@output = 'output.csv'
 
 # read config file
 config_file = "#{BASEDIR}/config/config.yml"

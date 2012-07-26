@@ -1,5 +1,4 @@
 module Scrapey
-  BASEDIR = File.expand_path(File.dirname($0)).gsub(/\/src$/,'')
 
   def get_or_post method, url, options={}, *args
     agent = method == 'goto' ? @browser : @agent

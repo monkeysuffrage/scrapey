@@ -16,14 +16,21 @@ Or install it yourself as:
 
     $ gem install scrapey
 
-## Usage
+## Examples
 
-TODO: Write usage instructions here
+### Concurrent downloads
 
-## Contributing
+  require 'scrapey'
+  require 'scrapey/multi'
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Added some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+  fields 'url', 'title'
+
+  def scrape url, response
+    doc = Nokogiri::HTML response
+    @items << {'url' => url, 'title' => doc.at('title').text}
+  end
+
+  @items = []
+  multi_get ['http://www.yahoo.com/', 'http://www.google.com.', 'http://www.bing.com/'], 3, :scrape
+  @items.each{|item| save item}
+
