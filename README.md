@@ -6,6 +6,10 @@ A simple framework for solving common scraping problems
 
     $ gem install scrapey
 
+## Create a new scrapey project
+
+    $ scrapey my_scraper
+
 ## Examples
 
 ### Proxy switching
