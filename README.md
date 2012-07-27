@@ -18,6 +18,19 @@ Or install it yourself as:
 
 ## Examples
 
+### Proxy switching
+
+```ruby
+def on_error e, method, url, options, *args
+  puts e.message
+  host, port = @config['proxies'].sample.split(':')
+  set_proxy host, port.to_i
+  send method, url, options, *args
+end
+
+get 'some_throttled_website_url'
+```
+
 ### Concurrent downloads
 
 ```ruby
@@ -32,6 +45,6 @@ def scrape url, response
 end
 
 @items = []
-multi_get ['http://www.yahoo.com/', 'http://www.google.com.', 'http://www.bing.com/'], 3, :scrape
+multi_get ['http://www.yahoo.com/', 'http://www.google.com.', 'http://www.bing.com/'], :threads => 3, :callback => :scrape
 @items.each{|item| save item}
 ```
