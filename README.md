@@ -1,18 +1,8 @@
 # Scrapey
 
-TODO: Write a gem description
+A simple framework for solving common scraping problems
 
 ## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'scrapey'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
 
     $ gem install scrapey
 
@@ -22,7 +12,6 @@ Or install it yourself as:
 
 ```ruby
 def on_error e, method, url, options, *args
-  puts e.message
   host, port = @config['proxies'].sample.split(':')
   set_proxy host, port.to_i
   send method, url, options, *args
