@@ -12,7 +12,7 @@ module Scrapey
       end
       
       doc = load_cache(url) if @use_cache
-  		return doc if doc
+      return doc if doc
 
       page = agent.send *new_args
       save_cache(url, page.body) if @use_cache
@@ -22,8 +22,7 @@ module Scrapey
     rescue Exception => e
       case
         when defined? on_error
-          on_error e
-          get_or_post method, url, options, *args
+          return on_error e, method, url, options, *args
         when _retries && _retries > 0
           puts "Error. Retries remaining: #{options[:retries]}"
           sleep _sleep if _sleep
@@ -58,12 +57,12 @@ module Scrapey
     end
   end
 
-	def visited? url
-		@visited ||= []
-		return true if @visited.include? url
-		@visited << url
-		false
-	end
+  def visited? url
+    @visited ||= []
+    return true if @visited.include? url
+    @visited << url
+    false
+  end
 
   def ts
     Time.now.to_i.to_s
