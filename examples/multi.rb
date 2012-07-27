@@ -9,5 +9,5 @@ def scrape url, response
 end
 
 @items = []
-multi_get ['http://www.yahoo.com/', 'http://www.google.com.', 'http://www.bing.com/'], 3, :scrape
+multi_get ['http://www.yahoo.com/', 'http://www.google.com.', 'http://www.bing.com/'], :threads => 3, :callback => :scrape
 @items.each{|item| save item}

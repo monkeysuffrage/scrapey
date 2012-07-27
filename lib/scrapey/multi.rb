@@ -1,8 +1,10 @@
 require 'em-http-request'
 
 module Scrapey
-  def multi_get all_urls, num_threads = 20, callback = :save_cache
-    all_urls.each_slice(num_threads) do |urls|
+  def multi_get all_urls, options
+    threads = options[:threads] || 20
+    callback = options[:callback] || :save_cache
+    all_urls.each_slice(threads) do |urls|
       next unless urls.size > 0
       EventMachine.run do
         multi = EventMachine::MultiRequest.new
