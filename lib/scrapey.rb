@@ -4,7 +4,6 @@ require 'json'
 require 'yaml'
 
 require "scrapey/scrapey"
-require "scrapey/version"
 require "scrapey/constants"
 require "scrapey/cache"
 require "scrapey/database"
