@@ -12,6 +12,20 @@ A simple framework for solving common scraping problems
 
 ## Examples
 
+### Files
+By default scrapey will save as 'output.csv'
+You can change this with:
+    $ @output = 'mycsv.csv'
+
+```ruby
+require 'scrapey'
+
+page = get 'http://www.alexa.com/topsites'
+page.search('li.site-listing').each do |li|
+  save [li.at('a').text, li.at('.description').text, li.at('.stars')[:title]]
+end
+```
+
 ### Proxy switching
 
 ```ruby
