@@ -15,6 +15,7 @@ A simple framework for solving common scraping problems
 ### Files
 By default scrapey will save as 'output.csv'
 You can change this with:
+
     $ @output = 'mycsv.csv'
 
 ```ruby
