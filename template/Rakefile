@@ -1,0 +1,8 @@
+#!/usr/bin/env rake
+#Rake.application.options.trace = true
+
+desc "Build project with ocra"
+task 'build' do
+  name = Dir.pwd[/[^\/]+$/]
+  system "ocra --icon icon.ico src/#{name}.rb --no-lzma --chdir-first --no-autoload --innosetup #{name}.iss"
+end

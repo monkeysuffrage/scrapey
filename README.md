@@ -2,9 +2,13 @@
 
 A simple framework for solving common scraping problems
 
-## Installation
+## Install latest version
+### Add to Gemfile
 
-    $ gem install scrapey
+    gem "scrapey", :git => 'https://github.com/monkeysuffrage/scrapey.git'
+
+### Then run:
+    $ bundle install
 
 ## Create a new scrapey project
 

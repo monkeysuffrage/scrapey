@@ -15,7 +15,7 @@ Gem::Specification.new do |gem|
   gem.name          = "scrapey"
   gem.require_paths = ["lib"]
   gem.version       = Scrapey::VERSION
-  gem.add_dependency(%q<mechanize>, ["~> 2.5.0"])
+  gem.add_dependency(%q<mechanize>)
   gem.add_dependency(%q<json>, ["~> 1.7.0"])
 end
 

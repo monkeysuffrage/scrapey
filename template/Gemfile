@@ -1,2 +1,2 @@
 source 'https://rubygems.org'
-gem "scrapey"
+gem "scrapey", :git => 'https://github.com/monkeysuffrage/scrapey.git'
