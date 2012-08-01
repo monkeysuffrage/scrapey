@@ -1,7 +1,8 @@
 require 'em-http-request'
 
 module Scrapey
-  def multi_get all_urls, options
+  def multi_get all_urls, options = {}
+    all_urls.reject!{|url| File.exists? cache_filename(url)} if @use_cache
     threads = options[:threads] || 20
     callback = options[:callback] || :save_cache
     @lock = Mutex.new

@@ -3,6 +3,7 @@
 ActiveRecord::Schema.define do
   create_table "items" do |t|
     t.string   "string_field"
+    t.text     "text_field"
     t.integer  "number_field"
     t.boolean  "boolean_field"
     t.float    "float_field"
