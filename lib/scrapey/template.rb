@@ -12,7 +12,7 @@ module Scrapey
         FileUtils.mv fn, fn.gsub('template', name)
       end
       buf = File.read "#{name}.iss"
-      buf.gsub! /Template/, name.capitalize
+      buf.gsub! /Template/, "rightmove_rentals".tr('_', ' ').gsub(/\w+/){|x| x.capitalize}
       buf.gsub! /template/, name
       File.open("#{name}.iss", 'w'){|f| f << buf}
 

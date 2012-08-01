@@ -25,4 +25,3 @@ if @config['database']
   ['active_record', @config['database']['adapter'], 'tzinfo', 'active_support/all'].each{|lib| require lib}
 	ActiveRecord::Base.establish_connection(@config['database']) 
 end
-

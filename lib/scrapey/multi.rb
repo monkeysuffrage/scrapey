@@ -4,6 +4,7 @@ module Scrapey
   def multi_get all_urls, options
     threads = options[:threads] || 20
     callback = options[:callback] || :save_cache
+    @lock = Mutex.new
     all_urls.each_slice(threads) do |urls|
       next unless urls.size > 0
       EventMachine.run do
@@ -14,7 +15,9 @@ module Scrapey
         multi.callback do
           (0...multi.requests.length).each do |i|				
             if multi.responses[:callback][i]
-              send callback, urls[i], multi.responses[:callback][i].response
+              @lock.synchronize do
+                send callback, urls[i], multi.responses[:callback][i].response
+              end
             else
               puts "problem downloading #{urls[i]}!"
             end

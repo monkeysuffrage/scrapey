@@ -1,8 +1,22 @@
 #!/usr/bin/env rake
 #Rake.application.options.trace = true
+require 'fileutils'
+
+def name
+  @name ||= Dir.pwd[/[^\/]+$/]
+end
 
 desc "Build project with ocra"
 task 'build' do
-  name = Dir.pwd[/[^\/]+$/]
   system "ocra --icon icon.ico src/#{name}.rb --no-lzma --chdir-first --no-autoload --innosetup #{name}.iss"
+end
+
+desc "Copy installer to dropbox folder"
+task 'dropbox' do
+  raise 'no dropbox folder!' unless ENV['DROPBOX']
+  folder = [ENV['DROPBOX'], name].join('/').squeeze('/')
+  FileUtils.mkdir(folder) unless File.exists?(folder)
+  FileUtils.cp "Output/setup.exe", folder
+  url = [ENV['DROPBOX_public_url'], name, 'setup.exe'].join('/').squeeze('/')
+  puts "uploaded to #{url}"
 end
