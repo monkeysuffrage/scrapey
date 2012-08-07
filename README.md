@@ -67,19 +67,17 @@ get 'some_throttled_website_url'
 ```
 
 ### Concurrent downloads
-
+Scrapey will ensure that the callbacks are threadsafe
 ```ruby
 require 'scrapey'
 require 'scrapey/multi'
 
 fields 'url', 'title'
 
-def scrape url, response
+def scrape url, response, header
   doc = Nokogiri::HTML response
-  @items << {'url' => url, 'title' => doc.at('title').text}
+  save({'url' => url, 'title' => doc.at('title').text})
 end
 
-@items = []
 multi_get ['http://www.yahoo.com/', 'http://www.google.com.', 'http://www.bing.com/'], :threads => 3, :callback => :scrape
-@items.each{|item| save item}
 ```

@@ -13,10 +13,14 @@ module Scrapey
     filename = cache_filename url
     return nil unless File::exists?(filename)
     puts "Loading #{filename} from cache"
-    Nokogiri::HTML File.read(filename)
+    str = File.read(filename)
+    puts str.encoding
+    Nokogiri::HTML File.read(filename), :encoding => str.encoding
   end
 
-  def save_cache url,doc
-    File.open(cache_filename(url), 'wb') {|f| f.write(doc) }
+  def save_cache url, doc, options = {}
+    encoding = options[:encoding] || 'UTF-8'
+    #binding.pry
+    File.open(cache_filename(url), "w:#{encoding}") {|f| f.write(doc.force_encoding(encoding)) }
   end
 end

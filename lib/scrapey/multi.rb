@@ -1,7 +1,7 @@
 require 'em-http-request'
 
 module Scrapey
-  def multi_get all_urls, options = {}
+  def multi_get_or_post method, all_urls, options = {}
     all_urls.reject!{|url| File.exists? cache_filename(url)} if @use_cache
     threads = options[:threads] || 20
     callback = options[:callback] || :save_cache
@@ -11,13 +11,13 @@ module Scrapey
       EventMachine.run do
         multi = EventMachine::MultiRequest.new
         urls.each_with_index do |url, i|
-          multi.add i, EventMachine::HttpRequest.new(url).get(:redirects => 10)
+          multi.add i, EventMachine::HttpRequest.new(url).send(method, :redirects => 10)
         end
         multi.callback do
           (0...multi.requests.length).each do |i|				
             if multi.responses[:callback][i]
               @lock.synchronize do
-                send callback, urls[i], multi.responses[:callback][i].response
+                send callback, urls[i], multi.responses[:callback][i].response, multi.responses[:callback][i].response_header
               end
             else
               puts "problem downloading #{urls[i]}!"
@@ -28,4 +28,9 @@ module Scrapey
       end
     end
   end
+
+  def multi_get *args; multi_get_or_post 'get', *args; end
+  def multi_post *args; multi_get_or_post 'post', *args; end
+  def multi_head *args; multi_get_or_post 'head', *args; end
+
 end
