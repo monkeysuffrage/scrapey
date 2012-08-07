@@ -2,6 +2,7 @@ require 'em-http-request'
 
 module Scrapey
   def multi_get_or_post method, all_urls, options = {}
+    request_options = {:redirects => 10, :head => {"User-Agent" => "Scrapey v#{Scrapey::VERSION} - #{Scrapey::URL}"}.merge(options.delete(:head))}
     all_urls.reject!{|url| File.exists? cache_filename(url)} if @use_cache
     threads = options[:threads] || 20
     callback = options[:callback] || :save_cache
@@ -11,7 +12,7 @@ module Scrapey
       EventMachine.run do
         multi = EventMachine::MultiRequest.new
         urls.each_with_index do |url, i|
-          multi.add i, EventMachine::HttpRequest.new(url).send(method, :redirects => 10)
+          multi.add i, EventMachine::HttpRequest.new(url, options).send(method, request_options)
         end
         multi.callback do
           (0...multi.requests.length).each do |i|				

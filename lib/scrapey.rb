@@ -12,7 +12,7 @@ include Scrapey
 
 # some defaults that I like
 @agent ||= Mechanize.new{|a| a.history.max_size = 10}
-@agent.user_agent = 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.56 Safari/536.5'
+@agent.user_agent = "Scrapey v#{Scrapey::VERSION} - #{Scrapey::URL}"
 
 # default output file
 @output = 'output.csv'
