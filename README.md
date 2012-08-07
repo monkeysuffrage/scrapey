@@ -48,10 +48,30 @@ page.search('div.list_item').each do |div|
 end
 ```
 
-### Retries
+### Caching
+Scrapey can cache responses so that next time they don't hit the network
 ```ruby
-# retry downloads on error a max of 3 times and sleep 30 seconds between retries.
+use_cache
+```
+
+You can use redis for caching if you have lots of memory
+```ruby
+require 'redis'
+use_cache :redis => Redis.new
+```
+
+### Retries
+Retry downloads on error a max of 3 times and sleep 30 seconds between retries.
+```ruby
 get 'some_url', :retries => 3, :sleep => 30
+```
+Or just handle errors in an on_error method (Scrapey will call it automatically if it's defined)
+```ruby
+def on_error e, method, url, options, *args
+  puts "retrying #{url} again in 30 seconds..."
+  sleep 30
+  send method, url, options, *args
+end
 ```
 
 ### Proxy switching

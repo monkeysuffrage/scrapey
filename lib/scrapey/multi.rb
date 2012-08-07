@@ -3,9 +3,9 @@ require 'em-http-request'
 module Scrapey
   def multi_get_or_post method, all_urls, options = {}
     request_options = {:redirects => 10, :head => {"User-Agent" => "Scrapey v#{Scrapey::VERSION} - #{Scrapey::URL}"}.merge(options.delete(:head))}
-    all_urls.reject!{|url| File.exists? cache_filename(url)} if @use_cache
     threads = options[:threads] || 20
     callback = options[:callback] || :save_cache
+    all_urls.reject!{|url| is_cached? url} if @use_cache
     @lock = Mutex.new
     all_urls.each_slice(threads) do |urls|
       next unless urls.size > 0

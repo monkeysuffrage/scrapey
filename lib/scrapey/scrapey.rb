@@ -15,7 +15,7 @@ module Scrapey
       return doc if doc
 
       page = agent.send *new_args
-      save_cache(url, page.body, :encoding => page.root.encoding) if @use_cache
+      save_cache(url, page.root.to_s) if @use_cache
 
       #exit if Object.const_defined? :Ocra
       page
@@ -62,6 +62,10 @@ module Scrapey
     return true if @visited.include? url
     @visited << url
     false
+  end
+
+  def debug msg
+    puts msg if @debug
   end
 
   def ts
