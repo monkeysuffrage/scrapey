@@ -9,13 +9,16 @@ def scrape url, response, header
   puts "scraped #{url}."
 end
 
+def on_error url, e
+  puts "oops, #{url} gave the following error: #{e}..."
+end
+
 options = {
   :threads => 3,
-  :callback => :scrape,
+  :on_success => :scrape,
   :proxy => {:host => 'localhost', :port => 8888},
   :head => {
     "Accept" => "*/*",
-    #"User-Agent" => "Scrapey #{Scrapey::VERSION}",
     "Keep-alive" => "true"
   }
 }

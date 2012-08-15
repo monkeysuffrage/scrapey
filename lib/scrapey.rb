@@ -13,7 +13,7 @@ include Scrapey
 # some defaults that I like
 @agent ||= Mechanize.new{|a| a.history.max_size = 10}
 @agent.user_agent = "Scrapey v#{Scrapey::VERSION} - #{Scrapey::URL}"
-
+@agent.verify_mode = OpenSSL::SSL::VERIFY_NONE
 # default output file
 @output = 'output.csv'
 
@@ -21,7 +21,4 @@ include Scrapey
 config_file = "#{BASEDIR}/config/config.yml"
 @config = File.exists?(config_file) ? YAML::load(File.open(config_file)) : {}
 
-if @config['database']
-  ['active_record', @config['database']['adapter'], 'tzinfo', 'active_support/all'].each{|lib| require lib}
-	ActiveRecord::Base.establish_connection(@config['database']) 
-end
+init_db if @config['database']

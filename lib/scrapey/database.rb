@@ -20,4 +20,9 @@ module Scrapey
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE #{Object.const_get(arg).table_name}")
     end
   end
+
+  def init_db
+    ['active_record', @config['database']['adapter'], 'tzinfo', 'active_support/all', 'active_support/multibyte/chars'].each{|lib| require lib}
+  	ActiveRecord::Base.establish_connection(@config['database']) 
+  end
 end

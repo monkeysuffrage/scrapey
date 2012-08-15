@@ -1,0 +1,593 @@
+=> [32m[1;32m#<[0m[32mEventMachine::MultiRequest:0x2237178[0m
+ @callbacks=[],
+ @deferred_args=[#<EventMachine::MultiRequest:0x2237178 ...>],
+ @deferred_status=:succeeded,
+ @deferred_timeout=nil,
+ @errbacks=nil,
+ @requests=
+  {0=[1;32m>[0m[32m[0m
+    [32m[1;32m#<[0m[32mEventMachine::HttpClient:0x21adc28
+     @callbacks=[],
+     @conn=
+      #<EventMachine::HttpConnection:0x21f3f30
+       @connopts=
+        #<HttpConnectionOptions:0x2231100
+         @connect_timeout=5,
+         @host="locahlost2",
+         @inactivity_timeout=10,
+         @port=80,
+         @proxy=nil,
+         @tls={}>,
+       @deferred=true,
+       @middleware=[],
+       @uri="http://locahlost2/foo">,
+     @content_charset=nil,
+     @content_decoder=nil,
+     @cookiejar=
+      #<EventMachine::HttpClient::CookieJar:0x21adc70
+       @jar=#<CookieJar::Jar:0x21adcb8 @domains={}>>,
+     @cookies=[],
+     @deferred_args=[#<EventMachine::HttpClient:0x21adc28 ...>],
+     @deferred_status=:failed,
+     @deferred_timeout=nil,
+     @errbacks=[],
+     @error="unable to resolve server address",
+     @headers=nil,
+     @req=
+      #<HttpClientOptions:0x21f42f0
+       @body=nil,
+       @decoding=true,
+       @file=nil,
+       @followed=0,
+       @headers=
+        {"User-Agent"=>
+          "Scrapey v0.0.5 - https://github.com/monkeysuffrage/scrapey"},
+       @host="locahlost2",
+       @keepalive=false,
+       @method="HEAD",
+       @pass_cookies=true,
+       @path=nil,
+       @port=80,
+       @query=nil,
+       @redirects=10,
+       @uri=#<Addressable::URI:0x10e696c URI:http://locahlost2:80/foo>[1;32m>[0m[32m[0m,
+     @response=[32m[1;32m"[0m[32m[1;32m"[0m[32m[0m,
+     @response_header={},
+     @state=[1;32m:response_header[0m,
+     @stream=[1;36mnil[0m>,
+   [1;34m1[0m=>
+    [32m[1;32m#<[0m[32mEventMachine::HttpClient:0x20ed610
+     @callbacks=[],
+     @conn=
+      #<EventMachine::HttpConnection:0x2136d08
+       @clients=[],
+       @conn=
+        #<EventMachine::HttpStubConnection:0x20c2e60
+         @callbacks=[],
+         @deferred_args=[],
+         @deferred_status=:succeeded,
+         @deferred_timeout=nil,
+         @errbacks=nil,
+         @parent=#<EventMachine::HttpConnection:0x2136d08 ...>,
+         @signature=5>,
+       @connopts=
+        #<HttpConnectionOptions:0x215c7d8
+         @connect_timeout=5,
+         @host="www.google.com.",
+         @inactivity_timeout=10,
+         @port=80,
+         @proxy=nil,
+         @tls={}>,
+       @deferred=false,
+       @middleware=[],
+       @p=#<HTTP::Parser:0x20da578>,
+       @peer="\x02\x00\x00PJ}G^\x00\x00\x00\x00\x00\x00\x00\x00",
+       @pending=[],
+       @uri="http://www.google.com.">,
+     @content_charset=nil,
+     @content_decoder=nil,
+     @cookiejar=
+      #<EventMachine::HttpClient::CookieJar:0x20ed670
+       @jar=
+        #<CookieJar::Jar:0x20e5198
+         @domains=
+          {".google.com.ph"=>
+            {"/"=>
+              {"PREF"=[1;32m>[0m[32m[0m
+                [1;34m[4mPREF[0m=[1;34m[4mID[0m=ec6b270e7fe890fa[1;32m:FF=[0m[1;34m0[0m[1;32m:TM=[0m[1;34m1344992862[0m[1;32m:LM=[0m[1;34m1344992862[0m[1;32m:S=[0m[1;34m[4mWlLM9juILblGoi5k[0m,
+               [32m[1;32m"[0m[32mNID[1;32m"[0m[32m[0m=>
+                [1;34m[4mNID[0m=[1;34m62[0m=[1;34m5[0m[1;34m[4mO_DMdySUEeIJXvveuCr1U8UEfYEhurh0X2Is[0m-a5f0xhTw5CxEY9gELcAyCmwqt4MxVLDpvT2anCV79hhXHfd-[1;34m[4mQPi0zRY8bCiqh7BlH1B3w0wfE3eg0PTR_KbXUJBBFm[0m}}}>>,
+     @cookies=[],
+     @deferred_args=[[32m[1;32m#<[0m[32mEventMachine::HttpClient:0x20ed610 ...[1;32m>[0m[32m[0m],
+     @deferred_status=[1;32m:succeeded[0m,
+     @deferred_timeout=[1;36mnil[0m,
+     @errbacks=
+      [[32m[1;32m#<[0m[32mProc:0x20297e8@C:/Ruby193/lib/ruby/gems/1.9.1/gems/em-http-request-1.0.2/lib/em-http/multi.rb:42[1;32m>[0m[32m[0m],
+     @error=[1;36mnil[0m,
+     @headers=[1;36mnil[0m,
+     @req=
+      [32m[1;32m#<[0m[32mHttpClientOptions:0x2129ec8
+       @body=nil,
+       @decoding=true,
+       @file=nil,
+       @followed=1,
+       @headers=
+        {"User-Agent"=[1;32m>[0m[32m[0m
+          [32m[1;32m"[0m[32mScrapey v0.0.5 - https://github.com/monkeysuffrage/scrapey[1;32m"[0m[32m[0m},
+       @host=[32m[1;32m"[0m[32mwww.google.com.ph[1;32m"[0m[32m[0m,
+       @keepalive=[1;36mfalse[0m,
+       @method=[32m[1;32m"[0m[32mHEAD[1;32m"[0m[32m[0m,
+       @pass_cookies=[1;36mtrue[0m,
+       @path=[1;36mnil[0m,
+       @port=[1;34m80[0m,
+       @query=[1;36mnil[0m,
+       @redirects=[1;34m10[0m,
+       @uri=[32m[1;32m#<[0m[32mAddressable::URI:0xe683ec URI:http://www.google.com.ph:80/[1;32m>[0m[32m[0m>,
+     @response=[32m[1;32m"[0m[32m[1;32m"[0m[32m[0m,
+     @response_header=
+      {[32m[1;32m"[0m[32mDATE[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mWed, 15 Aug 2012 01:07:42 GMT[1;32m"[0m[32m[0m,
+       [32m[1;32m"[0m[32mEXPIRES[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m-1[1;32m"[0m[32m[0m,
+       [32m[1;32m"[0m[32mCACHE_CONTROL[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mprivate, max-age=0[1;32m"[0m[32m[0m,
+       [32m[1;32m"[0m[32mCONTENT_TYPE[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mtext/html; charset=ISO-8859-1[1;32m"[0m[32m[0m,
+       [32m[1;32m"[0m[32mSET_COOKIE[1;32m"[0m[32m[0m=>
+        [[32m[1;32m"[0m[32mPREF=ID=ec6b270e7fe890fa:FF=0:TM=1344992862:LM=1344992862:S=WlLM9juILblGoi5k; expires=Fri, 15-Aug-2014 01:07:42 GMT; path=/; domain=.google.com.ph[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mNID=62=5O_DMdySUEeIJXvveuCr1U8UEfYEhurh0X2Is-a5f0xhTw5CxEY9gELcAyCmwqt4MxVLDpvT2anCV79hhXHfd-QPi0zRY8bCiqh7BlH1B3w0wfE3eg0PTR_KbXUJBBFm; expires=Thu, 14-Feb-2013 01:07:42 GMT; path=/; domain=.google.com.ph; HttpOnly[1;32m"[0m[32m[0m],
+       [32m[1;32m"[0m[32mP3P[1;32m"[0m[32m[0m=>
+        [32m[1;32m"[0m[32mCP=\"This is not a P3P policy! See http://www.google.com/support/accounts/bin/answer.py?hl=en&answer=151657 for more info.\"[1;32m"[0m[32m[0m,
+       [32m[1;32m"[0m[32mSERVER[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mgws[1;32m"[0m[32m[0m,
+       [32m[1;32m"[0m[32mX_XSS_PROTECTION[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m1; mode=block[1;32m"[0m[32m[0m,
+       [32m[1;32m"[0m[32mX_FRAME_OPTIONS[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mSAMEORIGIN[1;32m"[0m[32m[0m,
+       [32m[1;32m"[0m[32mCONNECTION[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mclose[1;32m"[0m[32m[0m},
+     @state=[1;32m:finished[0m,
+     @stream=[1;36mnil[0m>,
+   [1;34m2[0m=>
+    [32m[1;32m#<[0m[32mEventMachine::HttpClient:0x08d8490
+     @callbacks=[],
+     @conn=
+      #<EventMachine::HttpConnection:0x08d91b0
+       @clients=[],
+       @conn=
+        #<EventMachine::HttpStubConnection:0x08d8148
+         @callbacks=[],
+         @deferred_args=[],
+         @deferred_status=:succeeded,
+         @deferred_timeout=nil,
+         @errbacks=nil,
+         @parent=#<EventMachine::HttpConnection:0x08d91b0 ...>,
+         @signature=3>,
+       @connopts=
+        #<HttpConnectionOptions:0x1fed3b0
+         @connect_timeout=5,
+         @host="www.bing.com",
+         @inactivity_timeout=10,
+         @port=80,
+         @proxy=nil,
+         @tls={}>,
+       @deferred=false,
+       @middleware=[],
+       @p=#<HTTP::Parser:0x08d8028>,
+       @peer="\x02\x00\x00P|j\xAE\xB2\x00\x00\x00\x00\x00\x00\x00\x00",
+       @pending=[],
+       @uri="http://www.bing.com/">,
+     @content_charset=nil,
+     @content_decoder=nil,
+     @cookiejar=
+      #<EventMachine::HttpClient::CookieJar:0x08d8340
+       @jar=
+        #<CookieJar::Jar:0x08d8328
+         @domains=
+          {".bing.com"=>
+            {"/"=>
+              {"_FS"=[1;32m>[0m[32m[0m_FS=[1;34m[4mNU[0m=[1;34m1[0m,
+               [32m[1;32m"[0m[32m_SS[1;32m"[0m[32m[0m=>_SS=[1;34m[4mSID[0m=[1;34m847[0m[1;34m[4mF099F99524E2F97F8236B4B203509[0m,
+               [32m[1;32m"[0m[32mSRCHD[1;32m"[0m[32m[0m=>[1;34m[4mSRCHD[0m=[1;34m[4mD[0m=[1;34m2430787[0m&[1;34m[4mMS[0m=[1;34m2430787[0m&[1;34m[4mAF[0m=[1;34m[4mNOFORM[0m,
+               [32m[1;32m"[0m[32mSRCHUSR[1;32m"[0m[32m[0m=>[1;34m[4mSRCHUSR[0m=[1;34m[4mAUTOREDIR[0m=[1;34m0[0m&[1;34m[4mGEOVAR[0m=&[1;34m[4mDOB[0m=[1;34m20120815[0m}},
+           [32m[1;32m"[0m[32mwww.bing.com[1;32m"[0m[32m[0m=>
+            {[32m[1;32m"[0m[32m/[1;32m"[0m[32m[0m=>
+              {[32m[1;32m"[0m[32mSRCHUID[1;32m"[0m[32m[0m=>
+                [1;34m[4mSRCHUID[0m=[1;34m[4mV[0m=[1;34m2[0m&[1;34m[4mGUID[0m=[1;34m28[0m[1;34m[4mC754BC00C346D19F70AD5235BC50B4[0m}}}>>,
+     @cookies=[],
+     @deferred_args=[[32m[1;32m#<[0m[32mEventMachine::HttpClient:0x08d8490 ...[1;32m>[0m[32m[0m],
+     @deferred_status=[1;32m:succeeded[0m,
+     @deferred_timeout=[1;36mnil[0m,
+     @errbacks=[],
+     @error=[1;36mnil[0m,
+     @headers=[1;36mnil[0m,
+     @req=
+      [32m[1;32m#<[0m[32mHttpClientOptions:0x08d9030
+       @body=nil,
+       @decoding=true,
+       @file=nil,
+       @followed=0,
+       @headers=
+        {"User-Agent"=[1;32m>[0m[32m[0m
+          [32m[1;32m"[0m[32mScrapey v0.0.5 - https://github.com/monkeysuffrage/scrapey[1;32m"[0m[32m[0m},
+       @host=[32m[1;32m"[0m[32mwww.bing.com[1;32m"[0m[32m[0m,
+       @keepalive=[1;36mfalse[0m,
+       @method=[32m[1;32m"[0m[32mHEAD[1;32m"[0m[32m[0m,
+       @pass_cookies=[1;36mtrue[0m,
+       @path=[1;36mnil[0m,
+       @port=[1;34m80[0m,
+       @query=[1;36mnil[0m,
+       @redirects=[1;34m10[0m,
+       @uri=[32m[1;32m#<[0m[32mAddressable::URI:0x46c50c URI:http://www.bing.com:80/[1;32m>[0m[32m[0m>,
+     @response=[32m[1;32m"[0m[32m[1;32m"[0m[32m[0m,
+     @response_header=
+      {[32m[1;32m"[0m[32mCACHE_CONTROL[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mprivate, max-age=0[1;32m"[0m[32m[0m,
+       [32m[1;32m"[0m[32mCONTENT_TYPE[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mtext/html[1;32m"[0m[32m[0m,
+       [32m[1;32m"[0m[32mP3P[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mCP=\"NON UNI COM NAV STA LOC CURa DEVa PSAa PSDa OUR IND\"[1;32m"[0m[32m[0m,
+       [32m[1;32m"[0m[32mDATE[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mWed, 15 Aug 2012 01:07:42 GMT[1;32m"[0m[32m[0m,
+       [32m[1;32m"[0m[32mCONTENT_LENGTH[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m1[1;32m"[0m[32m[0m,
+       [32m[1;32m"[0m[32mCONNECTION[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mclose[1;32m"[0m[32m[0m,
+       [32m[1;32m"[0m[32mSET_COOKIE[1;32m"[0m[32m[0m=>
+        [[32m[1;32m"[0m[32m_FS=NU=1; domain=.bing.com; path=/[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32m_SS=SID=847F099F99524E2F97F8236B4B203509; domain=.bing.com; path=/[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mSRCHD=D=2430787&MS=2430787&AF=NOFORM; expires=Fri, 15-Aug-2014 01:07:42 GMT; domain=.bing.com; path=/[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mSRCHUID=V=2&GUID=28C754BC00C346D19F70AD5235BC50B4; expires=Fri, 15-Aug-2014 01:07:42 GMT; path=/[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mSRCHUSR=AUTOREDIR=0&GEOVAR=&DOB=20120815; expires=Fri, 15-Aug-2014 01:07:42 GMT; domain=.bing.com; path=/[1;32m"[0m[32m[0m]},
+     @state=[1;32m:finished[0m,
+     @stream=[1;36mnil[0m>,
+   [1;34m3[0m=>
+    [32m[1;32m#<[0m[32mEventMachine::HttpClient:0x1cc2a98
+     @callbacks=[],
+     @conn=
+      #<EventMachine::HttpConnection:0x08d7698
+       @clients=[],
+       @conn=
+        #<EventMachine::HttpStubConnection:0x1cc22e8
+         @callbacks=[],
+         @deferred_args=[],
+         @deferred_status=:succeeded,
+         @deferred_timeout=nil,
+         @errbacks=nil,
+         @parent=#<EventMachine::HttpConnection:0x08d7698 ...>,
+         @signature=4>,
+       @connopts=
+        #<HttpConnectionOptions:0x08d7d70
+         @connect_timeout=5,
+         @host="www.bing.com",
+         @inactivity_timeout=10,
+         @port=80,
+         @proxy=nil,
+         @tls={}>,
+       @deferred=false,
+       @middleware=[],
+       @p=#<HTTP::Parser:0x1cc2150>,
+       @peer="\x02\x00\x00P|j\xAE\xB2\x00\x00\x00\x00\x00\x00\x00\x00",
+       @pending=[],
+       @uri="http://www.bing.com/404.html">,
+     @content_charset=nil,
+     @content_decoder=nil,
+     @cookiejar=
+      #<EventMachine::HttpClient::CookieJar:0x1cc27c8
+       @jar=#<CookieJar::Jar:0x1cc2660 @domains={}>>,
+     @cookies=[],
+     @deferred_args=[#<EventMachine::HttpClient:0x1cc2a98 ...>],
+     @deferred_status=:succeeded,
+     @deferred_timeout=nil,
+     @errbacks=[],
+     @error=nil,
+     @headers=nil,
+     @req=
+      #<HttpClientOptions:0x08d7650
+       @body=nil,
+       @decoding=true,
+       @file=nil,
+       @followed=0,
+       @headers=
+        {"User-Agent"=>
+          "Scrapey v0.0.5 - https://github.com/monkeysuffrage/scrapey"},
+       @host="www.bing.com",
+       @keepalive=false,
+       @method="HEAD",
+       @pass_cookies=true,
+       @path=nil,
+       @port=80,
+       @query=nil,
+       @redirects=10,
+       @uri=#<Addressable::URI:0xe61f18 URI:http://www.bing.com:80/404.html>[1;32m>[0m[32m[0m,
+     @response=[32m[1;32m"[0m[32m[1;32m"[0m[32m[0m,
+     @response_header=
+      {[32m[1;32m"[0m[32mCACHE_CONTROL[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mno-cache[1;32m"[0m[32m[0m,
+       [32m[1;32m"[0m[32mCONTENT_TYPE[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mtext/html[1;32m"[0m[32m[0m,
+       [32m[1;32m"[0m[32mP3P[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mCP=\"NON UNI COM NAV STA LOC CURa DEVa PSAa PSDa OUR IND\"[1;32m"[0m[32m[0m,
+       [32m[1;32m"[0m[32mDATE[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mWed, 15 Aug 2012 01:07:42 GMT[1;32m"[0m[32m[0m,
+       [32m[1;32m"[0m[32mCONTENT_LENGTH[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m1[1;32m"[0m[32m[0m,
+       [32m[1;32m"[0m[32mCONNECTION[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mclose[1;32m"[0m[32m[0m},
+     @state=[1;32m:finished[0m,
+     @stream=[1;36mnil[0m>},
+ @responses=
+  {[1;32m:callback[0m=>
+    {[1;34m2[0m=>
+      [32m[1;32m#<[0m[32mEventMachine::HttpClient:0x08d8490
+       @callbacks=[],
+       @conn=
+        #<EventMachine::HttpConnection:0x08d91b0
+         @clients=[],
+         @conn=
+          #<EventMachine::HttpStubConnection:0x08d8148
+           @callbacks=[],
+           @deferred_args=[],
+           @deferred_status=:succeeded,
+           @deferred_timeout=nil,
+           @errbacks=nil,
+           @parent=#<EventMachine::HttpConnection:0x08d91b0 ...>,
+           @signature=3>,
+         @connopts=
+          #<HttpConnectionOptions:0x1fed3b0
+           @connect_timeout=5,
+           @host="www.bing.com",
+           @inactivity_timeout=10,
+           @port=80,
+           @proxy=nil,
+           @tls={}>,
+         @deferred=false,
+         @middleware=[],
+         @p=#<HTTP::Parser:0x08d8028>,
+         @peer="\x02\x00\x00P|j\xAE\xB2\x00\x00\x00\x00\x00\x00\x00\x00",
+         @pending=[],
+         @uri="http://www.bing.com/">,
+       @content_charset=nil,
+       @content_decoder=nil,
+       @cookiejar=
+        #<EventMachine::HttpClient::CookieJar:0x08d8340
+         @jar=
+          #<CookieJar::Jar:0x08d8328
+           @domains=
+            {".bing.com"=>
+              {"/"=>
+                {"_FS"=[1;32m>[0m[32m[0m_FS=[1;34m[4mNU[0m=[1;34m1[0m,
+                 [32m[1;32m"[0m[32m_SS[1;32m"[0m[32m[0m=>_SS=[1;34m[4mSID[0m=[1;34m847[0m[1;34m[4mF099F99524E2F97F8236B4B203509[0m,
+                 [32m[1;32m"[0m[32mSRCHD[1;32m"[0m[32m[0m=>[1;34m[4mSRCHD[0m=[1;34m[4mD[0m=[1;34m2430787[0m&[1;34m[4mMS[0m=[1;34m2430787[0m&[1;34m[4mAF[0m=[1;34m[4mNOFORM[0m,
+                 [32m[1;32m"[0m[32mSRCHUSR[1;32m"[0m[32m[0m=>[1;34m[4mSRCHUSR[0m=[1;34m[4mAUTOREDIR[0m=[1;34m0[0m&[1;34m[4mGEOVAR[0m=&[1;34m[4mDOB[0m=[1;34m20120815[0m}},
+             [32m[1;32m"[0m[32mwww.bing.com[1;32m"[0m[32m[0m=>
+              {[32m[1;32m"[0m[32m/[1;32m"[0m[32m[0m=>
+                {[32m[1;32m"[0m[32mSRCHUID[1;32m"[0m[32m[0m=>
+                  [1;34m[4mSRCHUID[0m=[1;34m[4mV[0m=[1;34m2[0m&[1;34m[4mGUID[0m=[1;34m28[0m[1;34m[4mC754BC00C346D19F70AD5235BC50B4[0m}}}>>,
+       @cookies=[],
+       @deferred_args=[[32m[1;32m#<[0m[32mEventMachine::HttpClient:0x08d8490 ...[1;32m>[0m[32m[0m],
+       @deferred_status=[1;32m:succeeded[0m,
+       @deferred_timeout=[1;36mnil[0m,
+       @errbacks=[],
+       @error=[1;36mnil[0m,
+       @headers=[1;36mnil[0m,
+       @req=
+        [32m[1;32m#<[0m[32mHttpClientOptions:0x08d9030
+         @body=nil,
+         @decoding=true,
+         @file=nil,
+         @followed=0,
+         @headers=
+          {"User-Agent"=[1;32m>[0m[32m[0m
+            [32m[1;32m"[0m[32mScrapey v0.0.5 - https://github.com/monkeysuffrage/scrapey[1;32m"[0m[32m[0m},
+         @host=[32m[1;32m"[0m[32mwww.bing.com[1;32m"[0m[32m[0m,
+         @keepalive=[1;36mfalse[0m,
+         @method=[32m[1;32m"[0m[32mHEAD[1;32m"[0m[32m[0m,
+         @pass_cookies=[1;36mtrue[0m,
+         @path=[1;36mnil[0m,
+         @port=[1;34m80[0m,
+         @query=[1;36mnil[0m,
+         @redirects=[1;34m10[0m,
+         @uri=[32m[1;32m#<[0m[32mAddressable::URI:0x46c50c URI:http://www.bing.com:80/[1;32m>[0m[32m[0m>,
+       @response=[32m[1;32m"[0m[32m[1;32m"[0m[32m[0m,
+       @response_header=
+        {[32m[1;32m"[0m[32mCACHE_CONTROL[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mprivate, max-age=0[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mCONTENT_TYPE[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mtext/html[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mP3P[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mCP=\"NON UNI COM NAV STA LOC CURa DEVa PSAa PSDa OUR IND\"[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mDATE[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mWed, 15 Aug 2012 01:07:42 GMT[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mCONTENT_LENGTH[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m1[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mCONNECTION[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mclose[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mSET_COOKIE[1;32m"[0m[32m[0m=>
+          [[32m[1;32m"[0m[32m_FS=NU=1; domain=.bing.com; path=/[1;32m"[0m[32m[0m,
+           [32m[1;32m"[0m[32m_SS=SID=847F099F99524E2F97F8236B4B203509; domain=.bing.com; path=/[1;32m"[0m[32m[0m,
+           [32m[1;32m"[0m[32mSRCHD=D=2430787&MS=2430787&AF=NOFORM; expires=Fri, 15-Aug-2014 01:07:42 GMT; domain=.bing.com; path=/[1;32m"[0m[32m[0m,
+           [32m[1;32m"[0m[32mSRCHUID=V=2&GUID=28C754BC00C346D19F70AD5235BC50B4; expires=Fri, 15-Aug-2014 01:07:42 GMT; path=/[1;32m"[0m[32m[0m,
+           [32m[1;32m"[0m[32mSRCHUSR=AUTOREDIR=0&GEOVAR=&DOB=20120815; expires=Fri, 15-Aug-2014 01:07:42 GMT; domain=.bing.com; path=/[1;32m"[0m[32m[0m]},
+       @state=[1;32m:finished[0m,
+       @stream=[1;36mnil[0m>,
+     [1;34m3[0m=>
+      [32m[1;32m#<[0m[32mEventMachine::HttpClient:0x1cc2a98
+       @callbacks=[],
+       @conn=
+        #<EventMachine::HttpConnection:0x08d7698
+         @clients=[],
+         @conn=
+          #<EventMachine::HttpStubConnection:0x1cc22e8
+           @callbacks=[],
+           @deferred_args=[],
+           @deferred_status=:succeeded,
+           @deferred_timeout=nil,
+           @errbacks=nil,
+           @parent=#<EventMachine::HttpConnection:0x08d7698 ...>,
+           @signature=4>,
+         @connopts=
+          #<HttpConnectionOptions:0x08d7d70
+           @connect_timeout=5,
+           @host="www.bing.com",
+           @inactivity_timeout=10,
+           @port=80,
+           @proxy=nil,
+           @tls={}>,
+         @deferred=false,
+         @middleware=[],
+         @p=#<HTTP::Parser:0x1cc2150>,
+         @peer="\x02\x00\x00P|j\xAE\xB2\x00\x00\x00\x00\x00\x00\x00\x00",
+         @pending=[],
+         @uri="http://www.bing.com/404.html">,
+       @content_charset=nil,
+       @content_decoder=nil,
+       @cookiejar=
+        #<EventMachine::HttpClient::CookieJar:0x1cc27c8
+         @jar=#<CookieJar::Jar:0x1cc2660 @domains={}>>,
+       @cookies=[],
+       @deferred_args=[#<EventMachine::HttpClient:0x1cc2a98 ...>],
+       @deferred_status=:succeeded,
+       @deferred_timeout=nil,
+       @errbacks=[],
+       @error=nil,
+       @headers=nil,
+       @req=
+        #<HttpClientOptions:0x08d7650
+         @body=nil,
+         @decoding=true,
+         @file=nil,
+         @followed=0,
+         @headers=
+          {"User-Agent"=>
+            "Scrapey v0.0.5 - https://github.com/monkeysuffrage/scrapey"},
+         @host="www.bing.com",
+         @keepalive=false,
+         @method="HEAD",
+         @pass_cookies=true,
+         @path=nil,
+         @port=80,
+         @query=nil,
+         @redirects=10,
+         @uri=
+          #<Addressable::URI:0xe61f18 URI:http://www.bing.com:80/404.html>[1;32m>[0m[32m[0m,
+       @response=[32m[1;32m"[0m[32m[1;32m"[0m[32m[0m,
+       @response_header=
+        {[32m[1;32m"[0m[32mCACHE_CONTROL[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mno-cache[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mCONTENT_TYPE[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mtext/html[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mP3P[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mCP=\"NON UNI COM NAV STA LOC CURa DEVa PSAa PSDa OUR IND\"[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mDATE[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mWed, 15 Aug 2012 01:07:42 GMT[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mCONTENT_LENGTH[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m1[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mCONNECTION[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mclose[1;32m"[0m[32m[0m},
+       @state=[1;32m:finished[0m,
+       @stream=[1;36mnil[0m>,
+     [1;34m1[0m=>
+      [32m[1;32m#<[0m[32mEventMachine::HttpClient:0x20ed610
+       @callbacks=[],
+       @conn=
+        #<EventMachine::HttpConnection:0x2136d08
+         @clients=[],
+         @conn=
+          #<EventMachine::HttpStubConnection:0x20c2e60
+           @callbacks=[],
+           @deferred_args=[],
+           @deferred_status=:succeeded,
+           @deferred_timeout=nil,
+           @errbacks=nil,
+           @parent=#<EventMachine::HttpConnection:0x2136d08 ...>,
+           @signature=5>,
+         @connopts=
+          #<HttpConnectionOptions:0x215c7d8
+           @connect_timeout=5,
+           @host="www.google.com.",
+           @inactivity_timeout=10,
+           @port=80,
+           @proxy=nil,
+           @tls={}>,
+         @deferred=false,
+         @middleware=[],
+         @p=#<HTTP::Parser:0x20da578>,
+         @peer="\x02\x00\x00PJ}G^\x00\x00\x00\x00\x00\x00\x00\x00",
+         @pending=[],
+         @uri="http://www.google.com.">,
+       @content_charset=nil,
+       @content_decoder=nil,
+       @cookiejar=
+        #<EventMachine::HttpClient::CookieJar:0x20ed670
+         @jar=
+          #<CookieJar::Jar:0x20e5198
+           @domains=
+            {".google.com.ph"=>
+              {"/"=>
+                {"PREF"=[1;32m>[0m[32m[0m
+                  [1;34m[4mPREF[0m=[1;34m[4mID[0m=ec6b270e7fe890fa[1;32m:FF=[0m[1;34m0[0m[1;32m:TM=[0m[1;34m1344992862[0m[1;32m:LM=[0m[1;34m1344992862[0m[1;32m:S=[0m[1;34m[4mWlLM9juILblGoi5k[0m,
+                 [32m[1;32m"[0m[32mNID[1;32m"[0m[32m[0m=>
+                  [1;34m[4mNID[0m=[1;34m62[0m=[1;34m5[0m[1;34m[4mO_DMdySUEeIJXvveuCr1U8UEfYEhurh0X2Is[0m-a5f0xhTw5CxEY9gELcAyCmwqt4MxVLDpvT2anCV79hhXHfd-[1;34m[4mQPi0zRY8bCiqh7BlH1B3w0wfE3eg0PTR_KbXUJBBFm[0m}}}>>,
+       @cookies=[],
+       @deferred_args=[[32m[1;32m#<[0m[32mEventMachine::HttpClient:0x20ed610 ...[1;32m>[0m[32m[0m],
+       @deferred_status=[1;32m:succeeded[0m,
+       @deferred_timeout=[1;36mnil[0m,
+       @errbacks=
+        [[32m[1;32m#<[0m[32mProc:0x20297e8@C:/Ruby193/lib/ruby/gems/1.9.1/gems/em-http-request-1.0.2/lib/em-http/multi.rb:42[1;32m>[0m[32m[0m],
+       @error=[1;36mnil[0m,
+       @headers=[1;36mnil[0m,
+       @req=
+        [32m[1;32m#<[0m[32mHttpClientOptions:0x2129ec8
+         @body=nil,
+         @decoding=true,
+         @file=nil,
+         @followed=1,
+         @headers=
+          {"User-Agent"=[1;32m>[0m[32m[0m
+            [32m[1;32m"[0m[32mScrapey v0.0.5 - https://github.com/monkeysuffrage/scrapey[1;32m"[0m[32m[0m},
+         @host=[32m[1;32m"[0m[32mwww.google.com.ph[1;32m"[0m[32m[0m,
+         @keepalive=[1;36mfalse[0m,
+         @method=[32m[1;32m"[0m[32mHEAD[1;32m"[0m[32m[0m,
+         @pass_cookies=[1;36mtrue[0m,
+         @path=[1;36mnil[0m,
+         @port=[1;34m80[0m,
+         @query=[1;36mnil[0m,
+         @redirects=[1;34m10[0m,
+         @uri=[32m[1;32m#<[0m[32mAddressable::URI:0xe683ec URI:http://www.google.com.ph:80/[1;32m>[0m[32m[0m>,
+       @response=[32m[1;32m"[0m[32m[1;32m"[0m[32m[0m,
+       @response_header=
+        {[32m[1;32m"[0m[32mDATE[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mWed, 15 Aug 2012 01:07:42 GMT[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mEXPIRES[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m-1[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mCACHE_CONTROL[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mprivate, max-age=0[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mCONTENT_TYPE[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mtext/html; charset=ISO-8859-1[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mSET_COOKIE[1;32m"[0m[32m[0m=>
+          [[32m[1;32m"[0m[32mPREF=ID=ec6b270e7fe890fa:FF=0:TM=1344992862:LM=1344992862:S=WlLM9juILblGoi5k; expires=Fri, 15-Aug-2014 01:07:42 GMT; path=/; domain=.google.com.ph[1;32m"[0m[32m[0m,
+           [32m[1;32m"[0m[32mNID=62=5O_DMdySUEeIJXvveuCr1U8UEfYEhurh0X2Is-a5f0xhTw5CxEY9gELcAyCmwqt4MxVLDpvT2anCV79hhXHfd-QPi0zRY8bCiqh7BlH1B3w0wfE3eg0PTR_KbXUJBBFm; expires=Thu, 14-Feb-2013 01:07:42 GMT; path=/; domain=.google.com.ph; HttpOnly[1;32m"[0m[32m[0m],
+         [32m[1;32m"[0m[32mP3P[1;32m"[0m[32m[0m=>
+          [32m[1;32m"[0m[32mCP=\"This is not a P3P policy! See http://www.google.com/support/accounts/bin/answer.py?hl=en&answer=151657 for more info.\"[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mSERVER[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mgws[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mX_XSS_PROTECTION[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32m1; mode=block[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mX_FRAME_OPTIONS[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mSAMEORIGIN[1;32m"[0m[32m[0m,
+         [32m[1;32m"[0m[32mCONNECTION[1;32m"[0m[32m[0m=>[32m[1;32m"[0m[32mclose[1;32m"[0m[32m[0m},
+       @state=[1;32m:finished[0m,
+       @stream=[1;36mnil[0m>},
+   [1;32m:errback[0m=>
+    {[1;34m0[0m=>
+      [32m[1;32m#<[0m[32mEventMachine::HttpClient:0x21adc28
+       @callbacks=[],
+       @conn=
+        #<EventMachine::HttpConnection:0x21f3f30
+         @connopts=
+          #<HttpConnectionOptions:0x2231100
+           @connect_timeout=5,
+           @host="locahlost2",
+           @inactivity_timeout=10,
+           @port=80,
+           @proxy=nil,
+           @tls={}>,
+         @deferred=true,
+         @middleware=[],
+         @uri="http://locahlost2/foo">,
+       @content_charset=nil,
+       @content_decoder=nil,
+       @cookiejar=
+        #<EventMachine::HttpClient::CookieJar:0x21adc70
+         @jar=#<CookieJar::Jar:0x21adcb8 @domains={}>>,
+       @cookies=[],
+       @deferred_args=[#<EventMachine::HttpClient:0x21adc28 ...>],
+       @deferred_status=:failed,
+       @deferred_timeout=nil,
+       @errbacks=[],
+       @error="unable to resolve server address",
+       @headers=nil,
+       @req=
+        #<HttpClientOptions:0x21f42f0
+         @body=nil,
+         @decoding=true,
+         @file=nil,
+         @followed=0,
+         @headers=
+          {"User-Agent"=>
+            "Scrapey v0.0.5 - https://github.com/monkeysuffrage/scrapey"},
+         @host="locahlost2",
+         @keepalive=false,
+         @method="HEAD",
+         @pass_cookies=true,
+         @path=nil,
+         @port=80,
+         @query=nil,
+         @redirects=10,
+         @uri=#<Addressable::URI:0x10e696c URI:http://locahlost2:80/foo>[1;32m>[0m[32m[0m,
+       @response=[32m[1;32m"[0m[32m[1;32m"[0m[32m[0m,
+       @response_header={},
+       @state=[1;32m:response_header[0m,
+       @stream=[1;36mnil[0m>}}>
