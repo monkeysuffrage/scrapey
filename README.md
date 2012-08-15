@@ -17,12 +17,13 @@ A simple framework for solving common scraping problems
 ## Examples
 
 ### CSV
+By default scrapey will save as 'output.csv'
+You can change this with:
+
+    @output = 'mycsv.csv'
 
 ```ruby
 require 'scrapey'
-# By default scrapey will save as 'output.csv'
-# You can change this with:
-# @output = 'mycsv.csv'
 
 page = get 'http://www.alexa.com/topsites'
 page.search('li.site-listing').each do |li|
@@ -31,10 +32,9 @@ end
 ```
 
 ### Database
+if you created a scrapey project you can fill out the database connection information in config/config.yml
 ```ruby
 require 'scrapey'
-# if you created a scrapey project you can fill out the database connection
-# information in config/config.yml
 
 tables 'Movie', 'Actor' # create ActiveRecord  models
 
