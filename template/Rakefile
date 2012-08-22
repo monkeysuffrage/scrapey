@@ -13,10 +13,11 @@ end
 
 desc "Copy installer to dropbox folder"
 task 'dropbox' do
+  file = 'setup.exe'
   raise 'no dropbox folder!' unless ENV['DROPBOX']
   folder = [ENV['DROPBOX'], name].join('/').squeeze('/')
   FileUtils.mkdir(folder) unless File.exists?(folder)
-  FileUtils.cp "Output/setup.exe", folder
-  url = [ENV['DROPBOX_public_url'], name, 'setup.exe'].join('/').squeeze('/')
+  FileUtils.cp "Output/#{file}", folder
+  url = [ENV['DROPBOX_public_url'], name, file].join('/').squeeze('/')
   puts "uploaded to #{url}"
 end
