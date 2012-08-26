@@ -1,5 +1,6 @@
 require 'scrapey'
 require 'scrapey/multi'
+require 'pry'
 
 fields 'url', 'title'
 
@@ -16,13 +17,14 @@ end
 options = {
   :threads => 3,
   :on_success => :scrape,
-  :proxy => {:host => 'localhost', :port => 8888},
+  :proxy => {:host => 'localhost', :port => 8889, :type => :socks5},
   :head => {
     "Accept" => "*/*",
-    "Keep-alive" => "true"
+    "Keep-alive" => "true",
+    "Cookie" => "foo=bar"
   }
 }
 
-multi_get ['http://www.yahoo.com/', 'http://www.google.com/', 'http://www.bing.com/'], options
+multi_get ["https://twitter.com/"], options
 
 puts "this happens after all callbacks."

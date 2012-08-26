@@ -12,10 +12,14 @@ module Scrapey
     filename = cache_filename url
     return nil unless File::exists?(filename)
     debug "Loading #{filename} from cache"
-    Nokogiri::HTML Marshal.load(File.read(filename))
+    begin
+      Nokogiri::HTML Marshal.load(File.read(filename))
+    rescue Exception => e
+      puts e.message
+    end
   end
 
   def save_cache url, doc, options = {}
-    File.open(cache_filename(url), "w") {|f| f << Marshal.dump(doc) }
+    File.open(cache_filename(url), "wb") {|f| f << Marshal.dump(doc) }
   end
 end

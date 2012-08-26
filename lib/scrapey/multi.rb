@@ -19,7 +19,7 @@ module Scrapey
         multi.callback do
           (0...multi.requests.length).each do |i|				
             if multi.responses[:callback][i]
-              if defined? on_success
+              if on_success
                 @lock.synchronize do
                   send on_success, urls[i], multi.responses[:callback][i].response, multi.responses[:callback][i].response_header
                 end
@@ -27,8 +27,9 @@ module Scrapey
                 raise "#{on_success} not defined!"
               end
             else
-              if defined? on_error
+              if on_error
                 @lock.synchronize do
+                  binding.pry
                   send on_error, urls[i], multi.requests[i].error
                 end
               else
