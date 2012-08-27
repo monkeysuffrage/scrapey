@@ -90,11 +90,10 @@ get 'some_throttled_website_url'
 Scrapey will ensure that the callbacks are threadsafe
 ```ruby
 require 'scrapey'
-require 'scrapey/multi'
 
 fields 'url', 'title'
 
-def scrape url, response, header
+def scrape url, response
   doc = Nokogiri::HTML response
   save({'url' => url, 'title' => doc.at('title').text})
 end

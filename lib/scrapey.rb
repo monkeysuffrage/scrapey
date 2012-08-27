@@ -7,6 +7,7 @@ require "scrapey/scrapey"
 require "scrapey/constants"
 require "scrapey/cache"
 require "scrapey/database"
+require "scrapey/multi"
 
 include Scrapey
 

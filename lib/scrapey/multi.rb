@@ -1,50 +1,42 @@
-require 'em-http-request'
+require 'httpclient'
 
 module Scrapey
   def multi_get_or_post method, all_urls, options = {}
-    head = options.delete(:head) || {}
-    request_options = {:redirects => 10, :head => {"User-Agent" => "Scrapey v#{Scrapey::VERSION} - #{Scrapey::URL}"}.merge(head)}
-    threads = options[:threads] || 20
-    on_success = options[:on_success] || :on_success
-    on_error = options[:on_error] || :on_error
     all_urls.reject!{|url| is_cached? url} if @use_cache
-    @lock = Mutex.new
+    return unless all_urls.size > 0
+
+    threads    = options[:threads]    || [10, all_urls.size].min
+    on_success = options[:on_success] || :on_success
+    on_error   = options[:on_error]   || :on_error
+    user_agent = options[:user_agent] || "Scrapey v#{Scrapey::VERSION} - #{Scrapey::URL}"
+    proxy      = options[:proxy]      || nil
+
+    @lock ||= Mutex.new
+    @http_clients ||= threads.times.map{HTTPClient.new(options[:proxies] ? options[:proxies].rotate!.first : proxy, user_agent).tap{|c| c.ssl_config.verify_mode, c.receive_timeout = OpenSSL::SSL::VERIFY_NONE, 10000}}
+    debug 'starting multi'
+
     all_urls.each_slice(threads) do |urls|
-      next unless urls.size > 0
-      EventMachine.run do
-        multi = EventMachine::MultiRequest.new
-        urls.each_with_index do |url, i|
-          multi.add i, EventMachine::HttpRequest.new(url, options).send(method, request_options)
-        end
-        multi.callback do
-          (0...multi.requests.length).each do |i|				
-            if multi.responses[:callback][i]
-              if on_success
-                @lock.synchronize do
-                  send on_success, urls[i], multi.responses[:callback][i].response, multi.responses[:callback][i].response_header
-                end
-              else
-                raise "#{on_success} not defined!"
-              end
+      urls.each_with_index.map do |url, i|
+        Thread.new do
+          begin
+            response = @http_clients[i].send method, url, options[:query], options[:headers]
+          rescue Exception => e
+            error = e
+          end
+          @lock.synchronize do
+            if response
+              send on_success, url, response
             else
-              if on_error
-                @lock.synchronize do
-                  binding.pry
-                  send on_error, urls[i], multi.requests[i].error
-                end
-              else
-                raise "#{on_error} not defined!"
-              end
+              send on_error, url, e
             end
           end
-          EventMachine.stop
         end
-      end
+      end.each{|thread| thread.join}
     end
   end
 
-  def multi_get *args; multi_get_or_post 'get', *args; end
-  def multi_post *args; multi_get_or_post 'post', *args; end
+  def multi_get *args; multi_get_or_post 'get_content', *args; end
+  def multi_post *args; multi_get_or_post 'post_content', *args; end
   def multi_head *args; multi_get_or_post 'head', *args; end
 
 end
