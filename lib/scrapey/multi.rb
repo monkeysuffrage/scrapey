@@ -1,18 +1,23 @@
 require 'httpclient'
 
+# monkey patch to remove annoying httpclient warnings
+class HTTPClient; def warn str; end; end
+
 module Scrapey
   def multi_get_or_post method, all_urls, options = {}
     all_urls.reject!{|url| is_cached? url} if @use_cache
     return unless all_urls.size > 0
 
-    threads    = options[:threads]    || [10, all_urls.size].min
+    threads    = options[:threads]    || 20
     on_success = options[:on_success] || :on_success
     on_error   = options[:on_error]   || :on_error
     user_agent = options[:user_agent] || "Scrapey v#{Scrapey::VERSION} - #{Scrapey::URL}"
     proxy      = options[:proxy]      || nil
+    timeout    = options[:timeout]    || 1000
 
     @lock ||= Mutex.new
-    @http_clients ||= threads.times.map{HTTPClient.new(options[:proxies] ? options[:proxies].rotate!.first : proxy, user_agent).tap{|c| c.ssl_config.verify_mode, c.receive_timeout = OpenSSL::SSL::VERIFY_NONE, 10000}}
+    @http_clients ||= threads.times.map{HTTPClient.new(options[:proxies] ? options[:proxies].rotate!.first : proxy, user_agent).tap{|c| c.ssl_config.verify_mode, c.receive_timeout, c.ssl_config.verify_callback = OpenSSL::SSL::VERIFY_NONE, timeout, proc{true}}}
+
     debug 'starting multi'
 
     all_urls.each_slice(threads) do |urls|

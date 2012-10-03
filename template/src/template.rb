@@ -11,7 +11,7 @@ require 'pry'
 def scrape div
   a = div.at('a')
   url = URI.join(@url, a[:href]).to_s
-  return unless visited? url
+  return if visited? url
   item = {}
   
   save item  

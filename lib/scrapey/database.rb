@@ -22,7 +22,15 @@ module Scrapey
   end
 
   def init_db
-    ['active_record', @config['database']['adapter'], 'tzinfo', 'active_support/all', 'active_support/multibyte/chars'].each{|lib| require lib}
+    [
+    'active_record',
+    'active_record/schema',
+    'active_record/connection_adapters/abstract/schema_definitions',
+    @config['database']['adapter'],
+    'tzinfo',
+    'active_support/all',
+    'active_support/multibyte/chars'
+    ].each{|lib| require lib}
   	ActiveRecord::Base.establish_connection(@config['database']) 
   end
 end

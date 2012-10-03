@@ -8,6 +8,7 @@ require "scrapey/constants"
 require "scrapey/cache"
 require "scrapey/database"
 require "scrapey/multi"
+require "scrapey/tee"
 
 include Scrapey
 
@@ -23,3 +24,5 @@ config_file = "#{BASEDIR}/config/config.yml"
 @config = File.exists?(config_file) ? YAML::load(File.open(config_file)) : {}
 
 init_db if @config['database']
+
+$stderr = Scrapey::Tee.new(STDERR, File.open("#{BASEDIR}/errors.log", "a"))

@@ -52,7 +52,7 @@ module Scrapey
     end
     case
       when item.is_a?(Array) then @csv << item
-      when item.is_a?(Hash)
+      when item.is_a?(Hash) || item.is_a?(CSV::Row)
         raise 'No fields defined!' unless @fields
         @csv << @fields.map{|f| item[f]}
       else raise "unsupported type: #{item.class}"

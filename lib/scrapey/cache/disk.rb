@@ -13,7 +13,7 @@ module Scrapey
     return nil unless File::exists?(filename)
     debug "Loading #{filename} from cache"
     begin
-      Nokogiri::HTML Marshal.load(File.read(filename))
+      Nokogiri::HTML Marshal.load(File.open(filename, "rb"){|f| f.read})
     rescue Exception => e
       puts e.message
     end
