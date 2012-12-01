@@ -5,18 +5,25 @@ class HTTPClient; def warn str; end; end
 
 module Scrapey
   def multi_get_or_post method, all_urls, options = {}
-    all_urls.reject!{|url| is_cached? url} if @use_cache
-    return unless all_urls.size > 0
 
-    threads    = options[:threads]    || 20
-    on_success = options[:on_success] || :on_success
-    on_error   = options[:on_error]   || :on_error
-    user_agent = options[:user_agent] || "Scrapey v#{Scrapey::VERSION} - #{Scrapey::URL}"
-    proxy      = options[:proxy]      || nil
-    timeout    = options[:timeout]    || 1000
+    # some sensible defaults
+    threads         = options[:threads]         || 20
+    on_success      = options[:on_success]      || :on_success
+    on_error        = options[:on_error]        || :on_error
+    user_agent      = options[:user_agent]      || "Scrapey v#{Scrapey::VERSION} - #{Scrapey::URL}"
+    proxy           = options[:proxy]           || nil
+    timeout         = options[:timeout]         || 1000
+    follow_redirect = options[:follow_redirect] || true
 
     @lock ||= Mutex.new
-    @http_clients ||= threads.times.map{HTTPClient.new(options[:proxies] ? options[:proxies].rotate!.first : proxy, user_agent).tap{|c| c.ssl_config.verify_mode, c.receive_timeout, c.ssl_config.verify_callback = OpenSSL::SSL::VERIFY_NONE, timeout, proc{true}}}
+
+    @http_clients ||= threads.times.map do
+      c = HTTPClient.new proxy, user_agent
+      c.ssl_config.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      c.receive_timeout =  timeout
+      yield c if block_given?
+      c
+    end
 
     debug 'starting multi'
 
@@ -24,7 +31,7 @@ module Scrapey
       urls.each_with_index.map do |url, i|
         Thread.new do
           begin
-            response = @http_clients[i].send method, url, options[:query], options[:headers]
+            response = @http_clients[i].send method, url, options[:query], options[:headers], :follow_redirect => follow_redirect
           rescue Exception => e
             error = e
           end

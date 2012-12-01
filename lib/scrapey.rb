@@ -17,7 +17,7 @@ include Scrapey
 @agent.user_agent = "Scrapey v#{Scrapey::VERSION} - #{Scrapey::URL}"
 @agent.verify_mode = OpenSSL::SSL::VERIFY_NONE
 # default output file
-@output = 'output.csv'
+@output = File.join BASEDIR, 'output.csv'
 
 # read config file
 config_file = "#{BASEDIR}/config/config.yml"
@@ -25,4 +25,4 @@ config_file = "#{BASEDIR}/config/config.yml"
 
 init_db if @config['database']
 
-$stderr = Scrapey::Tee.new(STDERR, File.open("#{BASEDIR}/errors.log", "a"))
+$stderr = Scrapey::Tee.new(STDERR, File.open("#{BASEDIR}/errors.log", "w"))

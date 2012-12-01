@@ -1,3 +1,5 @@
+require 'fileutils'
+
 module Scrapey
 
   def cache_filename url
@@ -22,4 +24,9 @@ module Scrapey
   def save_cache url, doc, options = {}
     File.open(cache_filename(url), "wb") {|f| f << Marshal.dump(doc) }
   end
+
+  def delete_cache url
+    FileUtils.rm cache_filename(url)
+  end
+
 end

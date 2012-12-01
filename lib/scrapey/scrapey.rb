@@ -1,7 +1,7 @@
 module Scrapey
 
   def get_or_post method, url, options={}, *args
-    agent = method == 'goto' ? @browser : @agent
+    agent = ['goto', 'visit'].include?(method) ? @browser : @agent
     _retries = options.delete :retries
     _sleep = options.delete :sleep
     begin
@@ -15,7 +15,8 @@ module Scrapey
       return doc if doc
 
       page = agent.send *new_args
-      save_cache(url, page.root.to_s) if @use_cache
+      str = page.respond_to?('root') ? page.root.to_s : page.body
+      save_cache(url, str) if @use_cache
 
       #exit if Object.const_defined? :Ocra
       page
@@ -36,6 +37,7 @@ module Scrapey
   def post *args; get_or_post 'post', *args; end
   def head *args; get_or_post 'head', *args; end
   def goto *args; get_or_post 'goto', *args; end
+  def visit *args; get_or_post 'visit', *args; end
 
   def set_proxy *args
     @agent.set_proxy *args

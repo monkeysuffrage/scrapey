@@ -11,4 +11,10 @@ module Scrapey
     end
   end
 
+  def disable_cache
+    @use_cache = false
+    yield
+    @use_cache = true
+  end
+
 end
