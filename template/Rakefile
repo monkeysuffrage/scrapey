@@ -21,3 +21,17 @@ task 'dropbox' do
   url = [ENV['DROPBOX_public_url'], name, file].join('/').squeeze('/')
   puts "uploaded to #{url}"
 end
+
+task 'git' do
+  server = ARGV[1] || 'foo'
+  puts <<EOF
+git commands:
+-------------
+cd my_repo
+git init
+git remote add origin ssh://#{server}/repos/#{name}
+git add .
+git commit -m "Initial commit"
+git push -u origin master
+EOF
+end

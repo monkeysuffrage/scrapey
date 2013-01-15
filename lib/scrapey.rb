@@ -2,6 +2,8 @@ require 'mechanize'
 require 'csv'
 require 'json'
 require 'yaml'
+require 'unf_ext'
+require 'coderay/tokens_proxy'
 
 require "scrapey/scrapey"
 require "scrapey/constants"

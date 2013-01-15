@@ -21,4 +21,4 @@ Name: "{group}\Uninstall Template Scraper"; Filename: "{uninstallexe}"
 // Root: HKCR; Subkey: SystemFileAssociations\.csv\shell\Template Scraper\command; ValueType: string; ValueData: """{app}\template.exe"" ""%1"""; Flags: uninsdeletekey deletekey
 
 [Run]
-//Filename: schtasks.exe; Parameters:" /CREATE /TN ""Scheduled Template"" /TR ""{app}\template.exe"" /SC DAILY /ST 02:30"
+// Filename: schtasks.exe; Parameters:" /CREATE /TN ""Scheduled Template"" /TR ""{app}\template.exe"" /SC DAILY /ST 02:30"
