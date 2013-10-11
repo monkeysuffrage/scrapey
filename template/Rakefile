@@ -13,13 +13,14 @@ end
 
 desc "Copy installer to dropbox folder"
 task 'dropbox' do
-  file = 'setup.exe'
-  raise 'no dropbox folder!' unless ENV['DROPBOX']
-  folder = [ENV['DROPBOX'], name].join('/').squeeze('/')
-  FileUtils.mkdir(folder) unless File.exists?(folder)
-  FileUtils.cp "Output/#{file}", folder
-  url = [ENV['DROPBOX_public_url'], name, file].join('/').squeeze('/')
-  puts "uploaded to #{url}"
+  Dir.glob('Output/*').map{|x| x[/[^\/]*$/]}.each do |file|
+    raise 'no dropbox folder!' unless ENV['DROPBOX']
+    folder = [ENV['DROPBOX'], name].join('/').squeeze('/')
+    FileUtils.mkdir(folder) unless File.exists?(folder)
+    FileUtils.cp "Output/#{file}", folder
+    url = [ENV['DROPBOX_public_url'], name, file].join('/')
+    puts "uploaded to #{url}"
+  end
 end
 
 task 'git' do

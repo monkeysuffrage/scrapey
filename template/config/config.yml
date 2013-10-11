@@ -12,6 +12,9 @@ password: 12345
 #  host: localhost
 #  encoding: 'utf8'
 
+#category: xxx
+#dataset_name: yyy
+
 # example proxies section
 #proxies:
 #- www.host1.com:80

@@ -15,7 +15,7 @@ module Scrapey
     return nil unless File::exists?(filename)
     debug "Loading #{filename} from cache"
     begin
-      Nokogiri::HTML Marshal.load(File.open(filename, "rb"){|f| f.read})
+      Mechanize::Page.new URI.parse(url), [], Marshal.load(File.open(filename, "rb"){|f| f.read}), nil, @agent
     rescue Exception => e
       puts e.message
     end

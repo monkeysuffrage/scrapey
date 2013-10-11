@@ -1,5 +1,15 @@
 module Scrapey
 
+  def self.init b
+    eval "include Scrapey", b
+
+    # some defaults that I like
+    eval "@agent ||= Mechanize.new{|a| a.history.max_size = 10}", b
+    eval "@agent.user_agent = 'Scrapey v#{Scrapey::VERSION} - #{Scrapey::URL}'", b
+    eval "@agent.verify_mode = OpenSSL::SSL::VERIFY_NONE", b
+  end
+
+
   def get_or_post method, url, options={}, *args
     agent = ['goto', 'visit'].include?(method) ? @browser : @agent
     _retries = options.delete :retries

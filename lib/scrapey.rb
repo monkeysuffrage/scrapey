@@ -3,7 +3,6 @@ require 'csv'
 require 'json'
 require 'yaml'
 require 'unf_ext'
-require 'coderay/tokens_proxy'
 
 require "scrapey/scrapey"
 require "scrapey/constants"
@@ -12,19 +11,19 @@ require "scrapey/database"
 require "scrapey/multi"
 require "scrapey/tee"
 
-include Scrapey
+# don't do this stuff in rails:
+unless defined? Rails
+  Scrapey::init binding
 
-# some defaults that I like
-@agent ||= Mechanize.new{|a| a.history.max_size = 10}
-@agent.user_agent = "Scrapey v#{Scrapey::VERSION} - #{Scrapey::URL}"
-@agent.verify_mode = OpenSSL::SSL::VERIFY_NONE
-# default output file
-@output = File.join BASEDIR, 'output.csv'
+  # default output file
+  @output = File.join BASEDIR, 'output.csv'
 
-# read config file
-config_file = "#{BASEDIR}/config/config.yml"
-@config = File.exists?(config_file) ? YAML::load(File.open(config_file)) : {}
+  # read config file
+  config_file = "#{BASEDIR}/config/config.yml"
+  @config = File.exists?(config_file) ? YAML::load(File.open(config_file)) : {}
 
-init_db if @config['database']
+  init_db if @config['database']
 
-$stderr = Scrapey::Tee.new(STDERR, File.open("#{BASEDIR}/errors.log", "w"))
+  $stderr = Scrapey::Tee.new(STDERR, File.open("#{BASEDIR}/errors.log", "w"))
+end
+

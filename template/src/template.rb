@@ -14,17 +14,19 @@ def scrape div
   save item  
   exit if defined? Ocra
 rescue StandardError => e
+  puts e.message, e.backtrace
   binding.pry
 end
 
-#use_cache :redis
 
 fields 'name', 'address', 'zip'
 
 @url = "http://www.example.com/"
 
-page = get @url
-scrape page.at('div')
+with_cache do
+  page = get @url
+  binding.pry
+end
 
 #@csv.close
 #%x{call #{@output}}
