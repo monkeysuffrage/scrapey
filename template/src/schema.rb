@@ -1,7 +1,7 @@
 =begin
 # put table schemas here. this will be included if the table is not found.
 ActiveRecord::Schema.define do
-  create_table "items" do |t|
+  create_table "items", options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8' do |t|
     t.string   "string_field"
     t.text     "text_field"
     t.integer  "number_field"

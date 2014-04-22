@@ -85,4 +85,10 @@ module Scrapey
   def ts
     Time.now.to_i.to_s
   end
+
+  def enqueue url
+    @url_list ||= File.open("#{BASEDIR}/config/urls.txt", 'w')
+    @url_list << url
+    @url_list << "\n"
+  end
 end
