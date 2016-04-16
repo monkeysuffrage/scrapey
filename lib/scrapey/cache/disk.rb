@@ -10,6 +10,7 @@ module Scrapey
     File.exists? cache_filename(url)
   end
 
+=begin
   def load_cache url
     filename = cache_filename url
     return nil unless File::exists?(filename)
@@ -24,9 +25,26 @@ module Scrapey
   def save_cache url, doc, options = {}
     File.open(cache_filename(url), "wb") {|f| f << Marshal.dump(doc) }
   end
+=end
+
+  def load_cache url
+    filename = cache_filename url
+    return nil unless File::exists?(filename)
+    debug "Loading #{filename} from cache"
+    begin
+      Mechanize::Page.new URI.parse(url), [], Marshal.load(Zlib::Inflate.inflate(File.open(filename, "rb"){|f| f.read})), nil, @agent
+    rescue Exception => e
+      puts e.message
+    end
+  end
+
+  def save_cache url, doc, options = {}
+    File.open(cache_filename(url), "wb") {|f| f << Zlib::Deflate.deflate(Marshal.dump(doc)) }
+  end
+
 
   def delete_cache url
-    FileUtils.rm cache_filename(url)
+    FileUtils.rm(cache_filename(url)) rescue nil
   end
 
 end

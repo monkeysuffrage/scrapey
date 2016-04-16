@@ -270,6 +270,42 @@ if ARGV.include?('-p')
   exit
 end
 
+def pget url, skip_ok = false
+  raise 'no gaq' unless @gaq
+  return nil unless url[/^http/]
+  if @use_cache && is_cached?(url)
+    return get(url)
+  end
+  @proxy.rotate
+  begin
+    page = get url
+  rescue StandardError => e
+    puts e.message
+    @proxy.remove
+    @agent.cookie_jar.clear!
+    return pget(url)
+  end
+
+  case
+    when page.respond_to?(:title) && page.title  && page.body[@gaq] && page.code == '200'
+      return page
+    else
+      delete_cache url
+      puts page.code
+      @proxy.remove
+      @agent.cookie_jar.clear!
+      return pget(url)
+  end
+end
+
+@config['proxies'] = File.read("#{BASEDIR}/config/proxies.txt").scan /[\w.]+:\d+/
+
+puts "starting with #{@config['proxies'].length} proxies..."
+@proxy = Proxy.new @agent, :proxies => @config['proxies'], :round_time => 60, :min => 0
+
+
+
+
 # for testing
 if __FILE__ == $0
   require 'mechanize'

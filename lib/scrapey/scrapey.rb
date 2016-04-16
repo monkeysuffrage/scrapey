@@ -1,3 +1,5 @@
+# require 'phantom_mechanize'
+
 module Scrapey
 
   def self.init b
@@ -12,8 +14,6 @@ module Scrapey
 
   def get_or_post method, url, options={}, *args
     agent = ['goto', 'visit'].include?(method) ? @browser : @agent
-    _retries = options.delete :retries
-    _sleep = options.delete :sleep
     begin
       new_args = method, url
       unless options.empty? && args.empty? 
@@ -21,33 +21,26 @@ module Scrapey
         args.each{|arg| new_args << arg}
       end
       
-      doc = load_cache(url) if @use_cache
+      key = method == 'post' ? url + options.to_s : url
+      doc = load_cache(key) if @use_cache
       return doc if doc
 
       page = agent.send *new_args
-      str = page.respond_to?('root') ? page.root.to_s : page.body
-      save_cache(url, str) if @use_cache
+      # str = page.respond_to?('root') ? page.root.to_s : page.body
+      # save_cache(url, str) if @use_cache
+      save_cache(key, page.body) if @use_cache
 
       #exit if Object.const_defined? :Ocra
       page
     rescue Exception => e
-      case
-        when defined? on_error
-          return on_error e, method, url, options, *args
-        when _retries && _retries > 0
-          puts "Error. Retries remaining: #{options[:retries]}"
-          sleep _sleep if _sleep
-          get_or_post method, url, options.merge({:retries => _retries - 1, :sleep => _sleep}), *args
-        else raise e
-      end
+      puts e.message
+      raise e
     end
   end
 
   def get *args; get_or_post 'get', *args; end
   def post *args; get_or_post 'post', *args; end
-  def head *args; get_or_post 'head', *args; end
-  def goto *args; get_or_post 'goto', *args; end
-  def visit *args; get_or_post 'visit', *args; end
+  def phget *args; get_or_post 'phget', *args; end
 
   def set_proxy *args
     @agent.set_proxy *args
@@ -57,19 +50,45 @@ module Scrapey
     @fields = args
   end
 
-  def save item
-    unless @csv && !@csv.closed?
-      @csv = CSV.open @output, 'w'
-      @csv << @fields if @fields
+  def save_images urls
+    folder = "#{BASEDIR}/images"
+    Dir.mkdir(folder) unless Dir.exists?(folder)
+    names = []
+    urls.each do |url|
+      name = url[/[^\/]+$/]
+      binding.pry unless name
+      names << name
+      fn = "#{folder}/#{name}"
+      next if File.exists?(fn)
+      file = @agent.get(url)
+      File.open(fn, 'wb'){|f| f << file.body}
     end
-    case
-      when item.is_a?(Array) then @csv << item
-      when item.is_a?(Hash) || item.is_a?(CSV::Row)
-        raise 'No fields defined!' unless @fields
-        @csv << @fields.map{|f| item[f]}
-      else raise "unsupported type: #{item.class}"
-    end
+    names
   end
+
+  def save item, output = nil
+    output ||= @output
+    @csvs ||= {}
+    unless @csvs[output]
+      obj = {}
+      begin
+        fn = output.gsub(/(?<!csv)$/, '.csv')
+        obj[:csv] = CSV.open fn, 'w'
+      rescue Exception => e
+        if e.is_a?(Errno::EACCES)
+          puts "Unable to access #{fn} - is it locked?"
+          exit
+        else
+          raise e
+        end
+      end
+      obj[:fields] = output == @output && @fields && !@fields.empty? ? @fields : item.keys
+      obj[:csv] << obj[:fields]
+      @csvs[output] = obj
+    end
+    @csvs[output][:csv] << @csvs[output][:fields].map{|f| item[f]}
+  end
+
 
   def visited? url
     @visited ||= []

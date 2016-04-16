@@ -1,5 +1,5 @@
 module Scrapey
-  VERSION = "0.0.16"
+  VERSION = "0.0.19"
   BASEDIR = File.expand_path(File.dirname($0)).gsub(/\/src$/,'')
   URL = "https://github.com/monkeysuffrage/scrapey"
 end
