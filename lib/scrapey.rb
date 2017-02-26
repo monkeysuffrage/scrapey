@@ -11,14 +11,16 @@ require "scrapey/database"
 require "scrapey/multi"
 require "scrapey/tee"
 
-require 'addressable/uri'
  
 EMAIL_REGEX = /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i
 
-class URI::Parser
-  def split url
-    a = Addressable::URI::parse url
-    [a.scheme, a.userinfo, a.host, a.port, nil, a.path, nil, a.query, a.fragment]
+unless ENV['USE_URI']
+  require 'addressable/uri'
+  class URI::Parser
+    def split url
+      a = Addressable::URI::parse url
+      [a.scheme, a.userinfo, a.host, a.port, nil, a.path, nil, a.query, a.fragment]
+    end
   end
 end
 

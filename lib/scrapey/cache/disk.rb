@@ -35,6 +35,8 @@ module Scrapey
       Mechanize::Page.new URI.parse(url), [], Marshal.load(Zlib::Inflate.inflate(File.open(filename, "rb"){|f| f.read})), nil, @agent
     rescue Exception => e
       puts e.message
+      # delete_cache url
+      # Mechanize::Page.new URI.parse(url), [], '<html></html>', nil, @agent
     end
   end
 
