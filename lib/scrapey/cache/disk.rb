@@ -3,7 +3,7 @@ require 'fileutils'
 module Scrapey
 
   def cache_filename url
-    @config['cache_dir'] + "/" + Digest::MD5.hexdigest(url) + ".cache"
+    @config['cache_dir'] + "/" + Digest::MD5.hexdigest(url).sub(/(.)(.)/, '\1/\2/\1\2') + ".cache"
   end
 
   def is_cached? url
