@@ -16,5 +16,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = Scrapey::VERSION
   gem.add_dependency(%q<mechanize>)
+  gem.add_dependency(%q<addressable>)
+  gem.add_dependency(%q<httpclient>)
 end
 
